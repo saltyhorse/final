@@ -1,0 +1,5 @@
+<h1>Bay Area Local Favorites</h1>
+
+<% for restaurant in @restaurants %>
+    <p><a href="/restaurants/<%= restaurant[:id] %>"><%= restaurant[:name] %></a></p>
+<% end %>
