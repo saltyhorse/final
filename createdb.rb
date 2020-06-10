@@ -21,7 +21,8 @@ DB.create_table! :reviews do
 end
 DB.create_table! :users do
   primary_key :id
-  String :name
+  String :firstname
+  String :lastname
   String :email
   String :password
   String :city

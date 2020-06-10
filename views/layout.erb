@@ -18,7 +18,7 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>Hello world!</title>
+    <title>Delicious Starts Here</title>
   </head>
   <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,18 +31,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/users/new">Sign Up</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logins/new">Sign In</a>
-                </li>
             </ul>
             <% if @current_user %>
                 <ul class="navbar-nav ml-auto">
                     <li class="navbar-text">
-                        Logged in as <%= @current_user[:name] %>
+                        Logged in as <%= @current_user[:firstname] %>
                     </li>
                     <li class="nav-item">
-                        <a href="/logout" class="nav-link">Logout</a>
+                        <a href="/logout" class="btn btn-primary">Logout</a>
                     </li>
+                </ul>
+                <% else %>
+                <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/logins/new" class="btn btn-primary">Sign In</a>
+                </li>
                 </ul>
             <% end %>
         </div>

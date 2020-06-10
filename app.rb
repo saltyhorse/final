@@ -43,6 +43,10 @@ get "/restaurants/:id" do
     @recommend = reviews_table.where(:restaurant_id => params["id"], :recommend => true).count
     # SELECT COUNT(*) FROM reviews WHERE restaurant_id=:id AND recommend=0
     @dontrecommend = reviews_table.where(:restaurant_id => params["id"], :recommend => false).count
+
+    results=Geocoder.search(@restaurant[:location])
+    @lat_long=results.first.coordinates.join(",")
+
     view "restaurant"
 end
 
@@ -54,12 +58,16 @@ end
 
 # Receiving end of new review form
 post "/restaurants/:id/reviews/create" do
+    if @current_user
         reviews_table.insert(:restaurant_id => params["id"],
                         :recommend => params["recommend"],
                         :user_id => @current_user[:id],
                         :comments => params["comments"])
         @restaurant = restaurants_table.where(:id => params["id"]).to_a[0]
         view "create_review"
+    else
+        view "sign_now"
+    end
 end
 
 # Form to create a new user
@@ -70,7 +78,8 @@ end
 # Receiving end of new user form
 post "/users/create" do
     puts params.inspect
-    users_table.insert(:name => params["name"],
+    users_table.insert(:firstname => params["firstname"],
+                       :lastname => params["lastname"],
                        :email => params["email"],
                        :city => params["city"],
                        :password => BCrypt::Password.create(params["password"]))
