@@ -30,13 +30,13 @@
 <div class="row">
     <div class="col-md">
         <h5><%= review[:comments] %></h5>
-        <h5><%= user[:name] %>
+        <h6><%= user[:name] %>
                 <% if review[:recommend] %>
                     <i class="far fa-thumbs-up fa-2x mr-3"></i>
                 <% else %>
                     <i class="far fa-thumbs-down fa-2x mr-3"></i>
                 <% end %>
-        </h5>
+        </h6>
     </div>
 </div>
 <% end %>
