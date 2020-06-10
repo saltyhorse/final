@@ -1,5 +1,13 @@
 <h1>Bay Area Local Favorites</h1>
 
+<div class="container">
 <% for restaurant in @restaurants %>
-    <p><a href="/restaurants/<%= restaurant[:id] %>"><%= restaurant[:name] %></a></p>
+
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title"><%= restaurant[:name] %></h5>
+        <a href="/restaurants/<%= restaurant[:id] %>" class="btn btn-primary float-right">More Details</a>
+        </div>
+    </div>
 <% end %>
+</div>
